@@ -1,19 +1,22 @@
 # Copilot Working Group Workshops
 
 Getting started:
+
 - Run `npm install`
 - Run `npm run dev`
 
 This repository hosts hands-on workshops to learn and practice GitHub Copilot—using Copilot Chat in the GitHub UI, Copilot in VSCode, and custom agents.
 
 Learn more about Copilot:
+
 - [What is GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot)
 
 ## Workshops and Exercises
 
 ### Workshop 1: GitHub Copilot
-- Exercise 1: Create a missing test for `<ProductCard />`
-  - Prompt Copilot to add a test that covers `<ProductCard />`.
+
+- Exercise 1: Create a missing test for `<ProductDetail />`
+  - Prompt Copilot to add a test that covers `<ProductDetail />`.
   - Run and refine the test based on observed behavior.
   - Iterate with Copilot Chat to improve assertions and coverage.
   - [Chat in GitHub](https://docs.github.com/en/copilot/how-tos/chat-with-copilot/chat-in-github)
@@ -30,12 +33,15 @@ Learn more about Copilot:
   - Open a PR and use @copilot to propose additional tests, summarize changes, and suggest refactors.
 
 ### Workshop 2: VSCode Copilot
+
 - WIP
 
 ### Workshop 3: Custom Agents
+
 - WIP
 
 ## Goals
+
 - Practice effective prompting in both chat and PR environments.
 - Use instructions to guide Copilot's output for consistency and quality.
 - Build confidence integrating Copilot into everyday workflows across GitHub, VSCode, and custom agents.
