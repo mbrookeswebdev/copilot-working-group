@@ -5,23 +5,20 @@ Created reusable component to display workshop facilitator information (name, ro
 ## Screenshots
 
 ### Team Page Example
-![Workshop Facilitators Page](https://github.com/user-attachments/assets/d32fbac9-7d61-4c74-9b52-c3fbf536f435)
 
-The screenshot above shows multiple TeamMemberCard components in a grid layout, demonstrating:
-- Cards with profile images (John Doe, Jane Smith)
-- Cards with placeholder images (Bob Wilson, Alice Brown)
-- Different combinations of profile links
-- Consistent styling and spacing
+**Image: Multiple TeamMemberCard components in a grid layout**
+
+![Workshop Facilitators Page showing 4 team member cards in a responsive grid: John Doe (Workshop Facilitator) with profile image and all social links, Jane Smith (Maintainer) with profile image and partial links, Bob Wilson (Contributor) with placeholder image and GitHub link only, Alice Brown (Content Creator) with placeholder image and no links](https://github.com/user-attachments/assets/d32fbac9-7d61-4c74-9b52-c3fbf536f435)
+
+*If image is unavailable: The screenshot shows multiple TeamMemberCard components in a grid layout with cards displaying profile images (John Doe, Jane Smith) and placeholder images showing "Team" text (Bob Wilson, Alice Brown), different combinations of profile links, and consistent card styling matching the ProductCard design.*
 
 ### Individual Card Detail
-![TeamMemberCard Component Detail](https://github.com/user-attachments/assets/5266e8ed-66d4-48db-abc7-560aaef04016)
 
-The detail view shows:
-- Profile image at the top
-- Name as the card title
-- Role in uppercase with primary color styling
-- Bio text with proper line height
-- Social links (GitHub, LinkedIn, Website) at the bottom
+**Image: Close-up view of a single TeamMemberCard component**
+
+![TeamMemberCard Component Detail showing John Doe's card with profile image at top, name as heading, "WORKSHOP FACILITATOR" role in uppercase with primary color, bio text below, and three social links (GitHub, LinkedIn, Website) at the bottom with proper spacing and styling](https://github.com/user-attachments/assets/5266e8ed-66d4-48db-abc7-560aaef04016)
+
+*If image is unavailable: The detail view shows a single card with: profile image at the top, team member name as the card title, role displayed in uppercase with primary color styling, bio text with proper line height and typography, and social links (GitHub, LinkedIn, Website) at the bottom separated by a border.*
 
 ## Implementation
 
