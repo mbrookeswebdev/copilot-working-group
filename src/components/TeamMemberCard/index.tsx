@@ -13,9 +13,9 @@ export interface TeamMemberCardProps {
   };
 }
 
-// Local placeholder image as SVG data URI to avoid external dependencies
+// Local placeholder image as SVG data URI with modern gradient design
 const DEFAULT_PLACEHOLDER =
-  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23e0e0e0" width="100" height="100"/%3E%3Ctext fill="%23666" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3ETeam%3C/text%3E%3C/svg%3E';
+  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Cdefs%3E%3ClinearGradient id="grad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23667eea;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23764ba2;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23grad)" width="200" height="200"/%3E%3Ccircle cx="100" cy="85" r="35" fill="rgba(255,255,255,0.3)"/%3E%3Cpath d="M 70 125 Q 100 135 130 125" stroke="rgba(255,255,255,0.3)" stroke-width="8" fill="none" stroke-linecap="round"/%3E%3Ctext fill="white" font-family="system-ui,sans-serif" font-size="16" font-weight="600" x="50%25" y="170" text-anchor="middle"%3ETeam Member%3C/text%3E%3C/svg%3E';
 
 // Validate URL to ensure it's a safe HTTP/HTTPS URL
 const isValidUrl = (url: string): boolean => {
