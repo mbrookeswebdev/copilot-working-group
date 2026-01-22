@@ -8,6 +8,7 @@ interface CardProps {
 interface CardImageProps {
   src: string;
   alt: string;
+  onError?: React.ReactEventHandler<HTMLImageElement>;
 }
 
 interface CardTitleProps {
@@ -26,8 +27,8 @@ export const Card = ({ children }: CardProps) => {
   return <div className={styles.card}>{children}</div>;
 };
 
-Card.Image = ({ src, alt }: CardImageProps) => {
-  return <img src={src} alt={alt} className={styles.image} />;
+Card.Image = ({ src, alt, onError }: CardImageProps) => {
+  return <img src={src} alt={alt} className={styles.image} onError={onError} />;
 };
 
 Card.Title = ({ children }: CardTitleProps) => {

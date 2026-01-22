@@ -129,4 +129,24 @@ describe('TeamMemberCard', () => {
     expect(screen.queryByRole('link', { name: /LinkedIn/ })).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: "Charlie Davis's website" })).toBeInTheDocument();
   });
+
+  it('displays placeholder when image fails to load', () => {
+    const memberWithBrokenImage = {
+      name: 'Test User',
+      role: 'Tester',
+      bio: 'Testing image error handling.',
+      image: 'https://broken-url.example.com/image.jpg',
+    };
+
+    render(<TeamMemberCard {...memberWithBrokenImage} />);
+
+    const image = screen.getByAltText('Test User profile picture') as HTMLImageElement;
+    expect(image).toBeInTheDocument();
+    
+    // Simulate image load error
+    image.dispatchEvent(new Event('error'));
+    
+    // Image should now use placeholder
+    expect(image.src).toContain('data:image/svg+xml');
+  });
 });

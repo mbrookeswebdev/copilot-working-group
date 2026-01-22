@@ -36,10 +36,19 @@ export const TeamMemberCard = ({
 }: TeamMemberCardProps) => {
   const profileImage = image || DEFAULT_PLACEHOLDER;
 
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    // If image fails to load, replace with placeholder
+    e.currentTarget.src = DEFAULT_PLACEHOLDER;
+  };
+
   return (
     <Card>
       <div className={styles.imageWrapper}>
-        <Card.Image src={profileImage} alt={`${name} profile picture`} />
+        <Card.Image 
+          src={profileImage} 
+          alt={`${name} profile picture`}
+          onError={handleImageError}
+        />
       </div>
 
       <div className={styles.content}>

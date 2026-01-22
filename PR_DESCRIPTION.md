@@ -4,21 +4,21 @@ Created reusable component to display workshop facilitator information (name, ro
 
 ## Screenshots
 
-### Team Page Example
+### Team Page Example - Image Placeholder Fallback
 
-**Image: Multiple TeamMemberCard components in a grid layout**
+**Image: Multiple TeamMemberCard components with automatic placeholder fallback**
 
-![Workshop Facilitators Page showing 4 team member cards in a responsive grid: John Doe (Workshop Facilitator) with profile image and all social links, Jane Smith (Maintainer) with profile image and partial links, Bob Wilson (Contributor) with placeholder image and GitHub link only, Alice Brown (Content Creator) with placeholder image and no links](https://github.com/user-attachments/assets/d32fbac9-7d61-4c74-9b52-c3fbf536f435)
+![Workshop Facilitators Page showing 4 team member cards, all displaying placeholder images with "Team" text because the image URLs failed to load. This demonstrates the automatic fallback functionality when facilitator profile images are unavailable or broken.](https://github.com/user-attachments/assets/0e573e71-bfb4-41ab-986d-65a9c35f6d04)
 
-*If image is unavailable: The screenshot shows multiple TeamMemberCard components in a grid layout with cards displaying profile images (John Doe, Jane Smith) and placeholder images showing "Team" text (Bob Wilson, Alice Brown), different combinations of profile links, and consistent card styling matching the ProductCard design.*
+*This screenshot demonstrates the automatic image error handling - when facilitator images fail to load (broken URLs, network errors, etc.), the component automatically displays a placeholder with "Team" text. All four cards show this fallback behavior.*
 
-### Individual Card Detail
+### Individual Card Detail - Placeholder Image
 
-**Image: Close-up view of a single TeamMemberCard component**
+**Image: Close-up view of a TeamMemberCard with placeholder image**
 
-![TeamMemberCard Component Detail showing John Doe's card with profile image at top, name as heading, "WORKSHOP FACILITATOR" role in uppercase with primary color, bio text below, and three social links (GitHub, LinkedIn, Website) at the bottom with proper spacing and styling](https://github.com/user-attachments/assets/5266e8ed-66d4-48db-abc7-560aaef04016)
+![TeamMemberCard Component Detail showing a card with placeholder "Team" image at the top, "John Doe" as the heading, "WORKSHOP FACILITATOR" role in uppercase with primary color, bio text below, and three social links (GitHub, LinkedIn, Website) at the bottom with proper spacing and styling](https://github.com/user-attachments/assets/63690e6f-aeaf-48ca-8f2b-35b415b44ae9)
 
-*If image is unavailable: The detail view shows a single card with: profile image at the top, team member name as the card title, role displayed in uppercase with primary color styling, bio text with proper line height and typography, and social links (GitHub, LinkedIn, Website) at the bottom separated by a border.*
+*The detail view shows the placeholder image that appears when a facilitator's profile picture fails to load. The placeholder is a clean, gray box with "Team" text that matches the app's design system.*
 
 ## Implementation
 
