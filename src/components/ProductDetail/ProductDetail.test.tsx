@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { UseQueryResult } from '@tanstack/react-query';
 import { ProductDetail } from './index';
 import * as useProductHook from '../../hooks/useProduct';
 import type { Product } from '../../types/product';
@@ -89,7 +90,7 @@ describe('ProductDetail', () => {
       isError: false,
       isSuccess: true,
       status: 'success',
-    } as any);
+    } as UseQueryResult<Product, Error>);
 
     render(<ProductDetail />, { wrapper: createWrapper() });
 
@@ -114,8 +115,8 @@ describe('ProductDetail', () => {
       error: null,
       isError: false,
       isSuccess: false,
-      status: 'loading',
-    } as any);
+      status: 'pending',
+    } as UseQueryResult<Product, Error>);
 
     render(<ProductDetail />, { wrapper: createWrapper() });
 
@@ -139,7 +140,7 @@ describe('ProductDetail', () => {
       isError: true,
       isSuccess: false,
       status: 'error',
-    } as any);
+    } as UseQueryResult<Product, Error>);
 
     render(<ProductDetail />, { wrapper: createWrapper() });
 
@@ -165,7 +166,7 @@ describe('ProductDetail', () => {
       isError: false,
       isSuccess: true,
       status: 'success',
-    } as any);
+    } as UseQueryResult<Product, Error>);
 
     render(<ProductDetail />, { wrapper: createWrapper() });
 
