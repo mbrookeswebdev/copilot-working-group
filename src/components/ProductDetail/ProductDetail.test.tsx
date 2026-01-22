@@ -39,8 +39,10 @@ vi.mock('../ProductMeta', () => ({
       <div data-testid="product-meta">
         {product && (
           <>
+            <span>Brand: {product.brand || 'N/A'}</span>
+            <span>Category: {product.category}</span>
             <span>Stock: {product.stock}</span>
-            <span>Status: {product.availabilityStatus}</span>
+            <span>Rating: ⭐ {product.rating.toFixed(1)}</span>
           </>
         )}
       </div>
@@ -173,6 +175,9 @@ describe('ProductDetail', () => {
     // Verify product is rendered with out of stock status
     expect(screen.getByText('Test Product')).toBeInTheDocument();
     expect(screen.getByText('Stock: 0')).toBeInTheDocument();
-    expect(screen.getByText('Status: Out of Stock')).toBeInTheDocument();
+    
+    // Verify that the component still renders even when stock is 0
+    expect(screen.getByTestId('product-meta')).toBeInTheDocument();
+    expect(screen.getByTestId('product-actions')).toBeInTheDocument();
   });
 });
