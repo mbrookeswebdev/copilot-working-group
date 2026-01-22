@@ -11,7 +11,7 @@ This repository hosts hands-on workshops for learning and practicing GitHub Copi
 - **Runtime**: Node.js 20
 - **Routing**: TanStack Router 1.140
 - **State Management**: TanStack Query 5.90
-- **Testing**: Vitest 4.0 with Testing Library
+- **Testing**: Vitest 4.0 with Testing Library and jsdom
 - **Linting**: ESLint 9.39 with TypeScript ESLint
 - **Type Checking**: TypeScript 5.9
 
@@ -73,7 +73,7 @@ npm test -- --run
 - Uses Vitest with jsdom environment
 - Test setup file: `src/test/setup.ts`
 - Duration: ~1.5 seconds
-- Currently has 1 test file with 4 passing tests
+- Currently has 1 test file (`ProductDetail.test.tsx`) with 4 test cases
 
 ### Run Tests in Watch Mode
 ```bash
@@ -173,9 +173,11 @@ Triggers on: Pull requests
 ## Known Issues
 
 1. **Build Failures**: The production build currently fails due to TypeScript errors:
-   - `useCartContext` is not properly exported from `CartContext`
-   - Affects `Header`, `ProductActions`, and `ProductCard` components
-   - Tests still pass, but `npm run build` will fail
+   - Components are importing `useCartContext` from `'../../contexts/CartContext'`
+   - However, `useCartContext` is exported from a separate file: `src/contexts/useCartContext.ts`
+   - Affected components: `Header`, `ProductActions`, and `ProductCard`
+   - **Fix**: Import from `'../../contexts/useCartContext'` instead
+   - Tests still pass, but `npm run build` will fail until this is fixed
 
 2. **Security Vulnerabilities**: npm reports 3 vulnerabilities (1 low, 2 high)
    - Run `npm audit` for details
