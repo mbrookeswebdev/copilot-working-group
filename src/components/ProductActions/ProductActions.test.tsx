@@ -181,7 +181,7 @@ describe('ProductActions', () => {
       isError: false,
       error: null,
       isSuccess: false,
-      status: 'success',
+      status: 'pending',
     } as unknown as UseQueryResult<Product, Error>);
 
     render(<ProductActions />, { wrapper: createWrapper() });

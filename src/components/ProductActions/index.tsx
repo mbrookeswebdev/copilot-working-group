@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useProduct } from '../../hooks/useProduct';
 import { useCartContext } from '../../contexts/useCartContext';
 import { Button } from '../ui/Button';
@@ -9,11 +9,17 @@ export const ProductActions = () => {
   const { addToCart } = useCartContext();
   const [justAdded, setJustAdded] = useState(false);
 
+  useEffect(() => {
+    if (justAdded) {
+      const timeoutId = setTimeout(() => setJustAdded(false), 2000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [justAdded]);
+
   const handleAddToCart = () => {
     if (product) {
       addToCart(product);
       setJustAdded(true);
-      setTimeout(() => setJustAdded(false), 2000);
     }
   };
 
