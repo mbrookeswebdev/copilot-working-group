@@ -3,3 +3,12 @@
   gap: 1rem;
   margin-top: 1rem;
 }
+
+.error {
+  padding: 1rem;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+  font-size: 0.9rem;
+}

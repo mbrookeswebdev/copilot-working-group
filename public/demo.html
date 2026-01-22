@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProductActions Component States</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .state-card {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .state-title {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+        .state-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .button {
+            width: 100%;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .button-primary {
+            background: #0066cc;
+            color: white;
+        }
+        .button-primary:hover {
+            background: #0052a3;
+        }
+        .button-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .button-success {
+            background: #28a745;
+            color: white;
+        }
+        .error-message {
+            padding: 16px;
+            background: #fee;
+            border: 1px solid #fcc;
+            border-radius: 4px;
+            color: #c33;
+            font-size: 14px;
+        }
+        .code-block {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 16px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+        .improvement-list {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 16px;
+            margin: 20px 0;
+        }
+        .improvement-list h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+        .improvement-list ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .improvement-list li {
+            margin: 6px 0;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ProductActions Component - State Demonstrations</h1>
+        <p class="subtitle">Visual guide showing all the improvements made to the ProductActions component</p>
+
+        <div class="improvement-list">
+            <h3>✨ Key Improvements</h3>
+            <ul>
+                <li><strong>Fixed Critical Import Bug:</strong> Corrected useCartContext import path (was breaking builds)</li>
+                <li><strong>Loading State:</strong> Button disabled with "Loading..." text while fetching data</li>
+                <li><strong>Error Handling:</strong> User-friendly error messages when product fetch fails</li>
+                <li><strong>Success Feedback:</strong> Temporary "✓ Added to Cart" confirmation (2 seconds)</li>
+                <li><strong>Memory Leak Fix:</strong> Properly cleanup setTimeout in useEffect</li>
+                <li><strong>Accessibility:</strong> Dynamic ARIA labels for screen readers</li>
+            </ul>
+        </div>
+
+        <div class="states-grid">
+            <!-- Normal State -->
+            <div class="state-card">
+                <div class="state-title">1️⃣ Normal State</div>
+                <div class="state-description">
+                    Product data loaded successfully. Button is enabled and ready for user interaction.
+                </div>
+                <button class="button button-primary">Add to Cart</button>
+                <div class="code-block">
+isLoading: false
+isError: false
+product: ✓ Available
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="state-card">
+                <div class="state-title">2️⃣ Loading State</div>
+                <div class="state-description">
+                    Product data is being fetched from API. Button is disabled to prevent premature clicks.
+                </div>
+                <button class="button button-primary" disabled>Loading...</button>
+                <div class="code-block">
+isLoading: true
+isError: false
+product: undefined
+disabled: true
+                </div>
+            </div>
+
+            <!-- Success Feedback -->
+            <div class="state-card">
+                <div class="state-title">3️⃣ Success Feedback</div>
+                <div class="state-description">
+                    Item successfully added to cart. Shows confirmation for 2 seconds, then reverts to normal.
+                </div>
+                <button class="button button-success">✓ Added to Cart</button>
+                <div class="code-block">
+justAdded: true
+aria-label: "Item added to cart"
+timeout: 2000ms cleanup
+                </div>
+            </div>
+
+            <!-- Error State -->
+            <div class="state-card">
+                <div class="state-title">4️⃣ Error State</div>
+                <div class="state-description">
+                    Product fetch failed. Displays user-friendly error message instead of button.
+                </div>
+                <div class="error-message">
+                    Unable to load product details: Failed to fetch
+                </div>
+                <div class="code-block">
+isLoading: false
+isError: true
+error: Error object
+Button: Hidden
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding: 24px; background: white; border-radius: 8px;">
+            <h2 style="margin-top: 0;">Code Comparison</h2>
+            
+            <h3>Before (Original)</h3>
+            <div class="code-block">
+// No state handling, potential memory leak
+const handleAddToCart = () => {
+  if (product) {
+    addToCart(product);
+  }
+};
+
+return (
+  &lt;Button onClick={() => product && addToCart(product)}&gt;
+    Add to Cart
+  &lt;/Button&gt;
+);
+            </div>
+
+            <h3>After (Improved)</h3>
+            <div class="code-block">
+// Proper state handling with cleanup
+const [justAdded, setJustAdded] = useState(false);
+
+useEffect(() => {
+  if (justAdded) {
+    const timeoutId = setTimeout(() => setJustAdded(false), 2000);
+    return () => clearTimeout(timeoutId); // Cleanup!
+  }
+}, [justAdded]);
+
+const handleAddToCart = () => {
+  if (product) {
+    addToCart(product);
+    setJustAdded(true);
+  }
+};
+
+// Error handling
+if (isError) {
+  return (
+    &lt;div className={styles.error}&gt;
+      Unable to load product details: {error?.message || 'Unknown error'}
+    &lt;/div&gt;
+  );
+}
+
+// Enhanced button with multiple states
+return (
+  &lt;Button
+    fullWidth
+    onClick={handleAddToCart}
+    disabled={isLoading || !product}
+    aria-label={justAdded ? 'Item added to cart' : 'Add to cart'}
+  &gt;
+    {isLoading ? 'Loading...' : justAdded ? '✓ Added to Cart' : 'Add to Cart'}
+  &lt;/Button&gt;
+);
+            </div>
+        </div>
+    </div>
+</body>
+</html>
