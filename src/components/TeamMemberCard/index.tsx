@@ -13,6 +13,20 @@ export interface TeamMemberCardProps {
   };
 }
 
+// Local placeholder image as SVG data URI to avoid external dependencies
+const DEFAULT_PLACEHOLDER =
+  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23e0e0e0" width="100" height="100"/%3E%3Ctext fill="%23666" font-family="sans-serif" font-size="14" x="50%25" y="50%25" text-anchor="middle" dominant-baseline="middle"%3ETeam%3C/text%3E%3C/svg%3E';
+
+// Validate URL to ensure it's a safe HTTP/HTTPS URL
+const isValidUrl = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
 export const TeamMemberCard = ({
   name,
   role,
@@ -20,7 +34,7 @@ export const TeamMemberCard = ({
   image,
   profileLinks,
 }: TeamMemberCardProps) => {
-  const profileImage = image || 'https://placehold.co/100x100/e0e0e0/666?text=Team';
+  const profileImage = image || DEFAULT_PLACEHOLDER;
 
   return (
     <Card>
@@ -37,7 +51,7 @@ export const TeamMemberCard = ({
 
         {profileLinks && (
           <div className={styles.links}>
-            {profileLinks.github && (
+            {profileLinks.github && isValidUrl(profileLinks.github) && (
               <a
                 href={profileLinks.github}
                 target="_blank"
@@ -48,7 +62,7 @@ export const TeamMemberCard = ({
                 GitHub
               </a>
             )}
-            {profileLinks.linkedin && (
+            {profileLinks.linkedin && isValidUrl(profileLinks.linkedin) && (
               <a
                 href={profileLinks.linkedin}
                 target="_blank"
@@ -59,7 +73,7 @@ export const TeamMemberCard = ({
                 LinkedIn
               </a>
             )}
-            {profileLinks.website && (
+            {profileLinks.website && isValidUrl(profileLinks.website) && (
               <a
                 href={profileLinks.website}
                 target="_blank"

@@ -62,7 +62,7 @@ describe('TeamMemberCard', () => {
 
     const image = screen.getByAltText('Jane Smith profile picture');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', 'https://placehold.co/100x100/e0e0e0/666?text=Team');
+    expect(image).toHaveAttribute('src', expect.stringContaining('data:image/svg+xml'));
   });
 
   it('does not render profile links section when no links are provided', () => {
@@ -92,5 +92,41 @@ describe('TeamMemberCard', () => {
     expect(screen.getByRole('link', { name: "Bob Wilson's GitHub profile" })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /LinkedIn/ })).not.toBeInTheDocument();
     expect(screen.queryByRole('link', { name: /website/ })).not.toBeInTheDocument();
+  });
+
+  it('does not render invalid URLs', () => {
+    const memberWithInvalidLinks = {
+      name: 'Alice Brown',
+      role: 'Contributor',
+      bio: 'Contributing to workshop content.',
+      profileLinks: {
+        github: 'javascript:alert("xss")',
+        linkedin: 'not-a-valid-url',
+        website: 'ftp://invalid-protocol.com',
+      },
+    };
+
+    render(<TeamMemberCard {...memberWithInvalidLinks} />);
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('renders only valid URLs when mixed with invalid ones', () => {
+    const memberWithMixedLinks = {
+      name: 'Charlie Davis',
+      role: 'Contributor',
+      bio: 'Contributing to workshop content.',
+      profileLinks: {
+        github: 'https://github.com/charliedavis',
+        linkedin: 'javascript:alert("xss")',
+        website: 'https://charliedavis.dev',
+      },
+    };
+
+    render(<TeamMemberCard {...memberWithMixedLinks} />);
+
+    expect(screen.getByRole('link', { name: "Charlie Davis's GitHub profile" })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /LinkedIn/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: "Charlie Davis's website" })).toBeInTheDocument();
   });
 });
